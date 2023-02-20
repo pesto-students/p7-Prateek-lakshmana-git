@@ -14,8 +14,13 @@ export const Home = ({handler,input,setInput,result,url})=>{
   navigator.clipboard.writeText(copyText.value);
 
   // Alert the copied text
-  alert("Copied the text: " + copyText.value);
-       
+  console.log(copyText.value)
+  if(copyText.value.length===0){
+   alert("No Short Url:Enter url " + copyText.value)
+  }
+  else{
+    alert("Copied the text : " + copyText.value);
+  }   
    }
     return(
          <div className="home-section">
@@ -29,28 +34,36 @@ export const Home = ({handler,input,setInput,result,url})=>{
 
             <div className="home-card">
                  <div className="home-card1">
+                  <form>
                     <input className="home-card-input"
                     type="text"
                     placeholder="Enter url here"
                     value={input}
+                    required
                     onChange={(e) => {
                       setInput(e.target.value);
                     }}/>
                     <button className="home-card-button" onClick={handler}>Shorten!</button>
+                    </form>
                  </div>
             </div>
             <div className="home-card-2">
                 <div className="home-card-2-div">
                  <div className="home-card-2-inside">
+                 
                     <input className='home-card-2-input' type="text"
+                      required
                       value={url[url.length-1]}/>
                     <div>
+                     <form>
                         <input
                         className='home-card-2-input-result'
                         id="cpy"
+                        required
                         type="text"
                         value={result}/>
                         <button className="home-card-2-input-button" onClick={handlerCpy}>Copy 😉</button>
+                        </form>
                     </div>
                  </div>
             </div>
